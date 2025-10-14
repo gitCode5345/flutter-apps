@@ -1,37 +1,69 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:application_about_me/ui/core/view_model/description_view_model.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<DescriptionViewModel>();
+    final descriptions = viewModel.descriptions;
+
     return Scaffold(
-      appBar: AppBar(title: Text("Про мене")),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CircleAvatar(
-              radius: 50,
-              backgroundImage: AssetImage("assets/images/cat.webp"),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              "Привіт, я Дмитро 👋",
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 8),
-            const Text("Flutter розробник", style: TextStyle(fontSize: 16)),
-            const SizedBox(height: 24),
-            ElevatedButton(
-              onPressed: () {
-                context.push("/details");
+      appBar: AppBar(title: const Text('Секції резюме')),
+      body: descriptions.isEmpty
+          ? const Center(child: Text('Немає жодного опису'))
+          : ListView.builder(
+              padding: const EdgeInsets.all(8),
+              itemCount: descriptions.length,
+              itemBuilder: (context, index) {
+                final description = descriptions[index];
+                return InkWell(
+                  borderRadius: BorderRadius.circular(12),
+                  onTap: () {
+                    context.pushNamed('details', extra: description);
+                  },
+                  child: Card(
+                    margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+                    elevation: 3,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            description.title,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            description.text,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey[700],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
               },
-              child: Text("Детальніше"),
             ),
-          ],
-        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => context.pushNamed('add'),
+        child: const Icon(Icons.add),
       ),
     );
   }
