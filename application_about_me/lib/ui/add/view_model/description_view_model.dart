@@ -13,4 +13,9 @@ class DescriptionViewModel extends ChangeNotifier {
     _repository.addDescription(description);
     notifyListeners();
   }
+  
+  void updateDescription(Description oldDescription, Description newDescription) {
+    _repository.updateDescription(oldDescription, newDescription);
+    notifyListeners();
+  }
 }
