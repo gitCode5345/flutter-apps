@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:application_about_me/ui/core/view_model/description_view_model.dart';
+import 'package:application_about_me/ui/add/view_model/description_view_model.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
     final descriptions = viewModel.descriptions;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Секції резюме')),
+      appBar: AppBar(title: const Text('Резюме')),
       body: descriptions.isEmpty
           ? const Center(child: Text('Немає жодного опису'))
           : ListView.builder(
