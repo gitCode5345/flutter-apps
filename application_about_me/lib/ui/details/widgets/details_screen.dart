@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:application_about_me/domain/models/description_model.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -30,10 +31,26 @@ class DetailsScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 12),
-              Text(
-                description.text,
-                style: const TextStyle(fontSize: 16),
-                textAlign: TextAlign.center,
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Text(
+                    description.text,
+                    style: const TextStyle(fontSize: 16),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 24),
+              
+              ElevatedButton.icon(
+                onPressed: () {
+                  context.pushNamed('add', extra: description);
+                },
+                icon: const Icon(Icons.copy),
+                label: const Text('Дублювати та Редагувати'),
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                ),
               ),
             ],
           ),
