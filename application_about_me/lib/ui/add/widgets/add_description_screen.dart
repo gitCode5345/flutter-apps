@@ -6,7 +6,7 @@ import 'package:application_about_me/ui/add/view_model/description_view_model.da
 
 class AddDescriptionScreen extends StatefulWidget {
   final Description? description;
-  
+
   const AddDescriptionScreen({super.key, this.description});
 
   @override
@@ -21,7 +21,7 @@ class _AddDescriptionScreenState extends State<AddDescriptionScreen> {
   @override
   void initState() {
     super.initState();
-    
+
     if (widget.description != null) {
       _titleController.text = widget.description!.title;
       _textController.text = widget.description!.text;
@@ -37,12 +37,11 @@ class _AddDescriptionScreenState extends State<AddDescriptionScreen> {
 
   void _saveDescription() {
     if (_formKey.currentState!.validate()) {
-      final newDescription = Description(
-        title: _titleController.text,
-        text: _textController.text,
+      context.read<DescriptionViewModel>().addDescription(
+        _titleController.text,
+        _textController.text,
       );
-      context.read<DescriptionViewModel>().addDescription(newDescription);
-      
+
       context.pop();
     }
   }
