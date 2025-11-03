@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:application_about_me/ui/home/widgets/home_screen.dart';
 import 'package:application_about_me/ui/github_info/widgets/github_info_screen.dart';
+import 'package:application_about_me/ui/settings/widgets/settings_screen.dart';
 
 class MainNavigationWidget extends StatefulWidget {
   const MainNavigationWidget({super.key});
@@ -15,6 +16,7 @@ class _MainNavigationWidgetState extends State<MainNavigationWidget> {
   final List<Widget> _screens = [
     const HomeScreen(),
     const GitHubScreen(),
+    const SettingsScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -26,22 +28,14 @@ class _MainNavigationWidgetState extends State<MainNavigationWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: _currentIndex,
-        children: _screens,
-      ),
+      body: IndexedStack(index: _currentIndex, children: _screens),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: _onItemTapped,
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Резюме',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'GitHub',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Резюме"),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: "GitHub"),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Налаштування"),
         ],
       ),
     );
