@@ -65,10 +65,7 @@ class GitHubScreen extends StatelessWidget {
                     style: const TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
                   ),
                 ),
-              
               const SizedBox(height: 24),
-              
-              // НОВИЙ ВІДЖЕТ ДЛЯ СТАТИСТИКИ
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -116,22 +113,24 @@ class StatsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Column(
       children: [
         Text(
           count.toString(),
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
-            color: Colors.blueAccent, // Для візуального акценту
+            color: theme.colorScheme.primary,
           ),
         ),
         const SizedBox(height: 4),
         Text(
           label,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 14,
-            color: Colors.black54,
+            color: theme.textTheme.bodyLarge?.color,
           ),
         ),
       ],
