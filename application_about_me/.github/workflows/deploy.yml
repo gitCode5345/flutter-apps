@@ -10,22 +10,28 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout 🛎️
         uses: actions/checkout@v3
 
-      - name: Setup Flutter
+      - name: Setup Flutter 🐦
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
 
-      - name: Install dependencies
+      - name: Install dependencies 📦
         run: flutter pub get
 
-      - name: Build Web
+        working-directory: ./application_about_me
+
+      - name: Build Web 🕸️
         run: |
+          # 3. ВАЖЛИВО: Назва репозиторію 'flutter-apps'
           flutter build web --release --base-href /flutter-apps/
+
+        working-directory: ./application_about_me
       
-      - name: Deploy
+      - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: build/web
+
+          folder: application_about_me/build/web
