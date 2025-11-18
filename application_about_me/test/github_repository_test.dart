@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
-
 import 'package:application_about_me/data/repositories/github_repository.dart';
 import 'package:application_about_me/data/services/github_service.dart';
 import 'package:application_about_me/domain/models/github_user_model.dart';
