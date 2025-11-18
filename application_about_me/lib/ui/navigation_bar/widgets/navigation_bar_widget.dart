@@ -62,7 +62,6 @@ class _MainNavigationWidgetState extends State<MainNavigationWidget> {
   void initState() {
     super.initState();
     
-    // Завантажуємо рекламу лише якщо це не Web І (це Android або iOS)
     if (!kIsWeb) {
       if (Platform.isAndroid || Platform.isIOS) {
         _loadBannerAd();
@@ -88,7 +87,7 @@ class _MainNavigationWidgetState extends State<MainNavigationWidget> {
             Container(
               color:
                   Theme.of(context).bottomAppBarTheme.color ??
-                  Colors.transparent, // для темної теми
+                  Colors.transparent,
               width: _bannerAd!.size.width.toDouble(),
               height: _bannerAd!.size.height.toDouble(),
               child: AdWidget(ad: _bannerAd!),
