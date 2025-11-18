@@ -19,7 +19,7 @@ jobs:
           channel: 'stable'
 
       - name: Create .env file
-        run: touch .env
+        run: echo "${{ secrets.ENV_FILE }}" > .env
         working-directory: ./application_about_me
 
       - name: Install dependencies
@@ -39,4 +39,3 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: application_about_me/build/web
-          
