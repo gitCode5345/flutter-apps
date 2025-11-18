@@ -33,6 +33,7 @@ jobs:
       - name: Build Web
         run: |
           flutter build web --release --base-href /flutter-apps/
+          touch build/web/.nojekyll
         working-directory: ./application_about_me
       
       - name: Deploy
