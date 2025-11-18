@@ -27,8 +27,17 @@ void main() {
     when(mockService.fetchUser(any))
       .thenAnswer((_) async => mockUser);
 
-    await repository.getUserData();
+    final result = await repository.getUserData();
 
     verify(mockService.fetchUser('gitCode5345')).called(1);
+    expect(result, equals(mockUser));
+  });
+
+  test('getUserData прокидає помилку, якщо сервіс впав', () async {
+    // Arrange
+    when(mockService.fetchUser(any))
+      .thenThrow(Exception('Server error'));
+
+    expect(() => repository.getUserData(), throwsException);
   });
 }
