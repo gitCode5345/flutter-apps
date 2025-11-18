@@ -18,6 +18,10 @@ jobs:
         with:
           channel: 'stable'
 
+      - name: Create .env file
+        run: touch .env
+        working-directory: ./application_about_me
+
       - name: Install dependencies
         run: flutter pub get
         working-directory: ./application_about_me
@@ -35,3 +39,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: application_about_me/build/web
+          
